@@ -7,7 +7,6 @@ require('./models/User');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
-// Tmp
 const app = express();
 
 app.use(
