@@ -10,23 +10,23 @@ module.exports = (app) => {
     res.send({'Another endpoint!': 'This is another endpoint!'});
   });
 
-  // // google auth
-  // app.get('/auth/google/callback', passport.authenticate('google'));  
+  // google auth
+  app.get('/auth/google/callback', passport.authenticate('google'));  
 
-  // // google auth
-  // app.get(
-  //   '/auth/google',
-  //   passport.authenticate('google', {
-  //     scope: ['profile', 'email']
-  //   },
-  // ));
+  // google auth
+  app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+      scope: ['profile', 'email']
+    },
+  ));
   
-  // app.get('/api/current_user', (req, res) => {
-  //   console.log('Current user is', req.user);
-  //   res.send(req.user);
-  // });
+  app.get('/api/current_user', (req, res) => {
+    console.log('Current user is', req.user);
+    res.send(req.user);
+  });
 
-  // app.get('/api/logout', (req, res) => {
-  //   req.logout();
-  // })
+  app.get('/api/logout', (req, res) => {
+    req.logout();
+  })
 };
