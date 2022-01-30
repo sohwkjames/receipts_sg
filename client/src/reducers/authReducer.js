@@ -1,6 +1,12 @@
-export default function(state = {}, action) {
-  console.log('authReducer received action:', action);
+import { FETCH_USER } from "../actions/types";
+
+export default function(state = null, action) {
+  // action is of shape: 
+  // { type: 'some_string', payload: { _id: '123', googleId: '234 ...} }
+  console.log('reducer received action:', action)
   switch(action.type) {
+    case FETCH_USER: 
+      return action.payload;
     default:
       return state;
   }

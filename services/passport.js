@@ -24,7 +24,7 @@ passport.use(new GoogleStrategy({
   }, 
   async (accessToken, refreshToken, profile, done) => {
     // this function fires when user logs into google auth
-    const existungUser = await User.findOne({ googleId: profile.id })
+    const existingUser = await User.findOne({ googleId: profile.id })
 
     if (existingUser) {
       done(null, existingUser);
