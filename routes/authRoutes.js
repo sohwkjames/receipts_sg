@@ -10,10 +10,8 @@ module.exports = (app) => {
     res.send({'Another endpoint!': 'This is another endpoint!'});
   });
 
-  // google auth
   app.get('/auth/google/callback', passport.authenticate('google'));  
 
-  // google auth
   app.get(
     '/auth/google',
     passport.authenticate('google', {
