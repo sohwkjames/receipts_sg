@@ -10,7 +10,13 @@ module.exports = (app) => {
     res.send({'Another endpoint!': 'This is another endpoint!'});
   });
 
-  app.get('/auth/google/callback', passport.authenticate('google'));  
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
+    );  
 
   app.get(
     '/auth/google',
