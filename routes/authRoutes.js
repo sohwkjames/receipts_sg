@@ -1,13 +1,9 @@
 const { application } = require('express');
 const passport = require('passport');
 
-module.exports = (app) => {
-  app.get('/', (req, res) => {
+module.exports = (app) => {  
+  app.get('/isitworking', (req, res) => {
     res.send({'Hello!': 'Backend is working!'});
-  });
-  
-  app.get('/hello', (req, res) => {
-    res.send({'Another endpoint!': 'This is another endpoint!'});
   });
 
   app.get(
