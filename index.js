@@ -5,9 +5,12 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 require('./models/User');
+require('./models/Complaint');
+require('./models/Survey');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -22,16 +25,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// We do this because the routes exports a function. Hence, 
-// we can pass in app as an argument into our require statements.
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/complaintRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
+// For serving index.js to heroku properly
 if (process.env.NODE_ENV === 'production') {
   // express serve up production assets: main.js and main.css
   app.use(express.static('client/build'));
-  // express serve index.html if does not recognise route
+  // express serve index.html if does not recognise route, goes to client side routes
   const path = require('path');
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
