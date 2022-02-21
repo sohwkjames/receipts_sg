@@ -5,7 +5,7 @@ const passport = require('passport');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 require('./models/User');
-require('./models/Complaint');
+require('./models/Receipt');
 require('./models/Survey');
 require('./services/passport');
 
@@ -27,7 +27,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
-require('./routes/complaintRoutes')(app);
+require('./routes/receiptRoutes')(app);
 require('./routes/surveyRoutes')(app);
 
 // For serving index.js to heroku properly
