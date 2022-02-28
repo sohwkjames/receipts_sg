@@ -14,7 +14,6 @@ module.exports = (app) => {
 
   app.post('/api/receipts/add', (req, res) => {
     const { title, text } = req.body;
-    console.log('req.body: ', req.body);
     let receipt = new Receipt( {
       title,
       text,

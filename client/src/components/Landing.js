@@ -3,10 +3,9 @@ import React from 'react';
 function Landing() {
   return(
     <div style={{ textAlign: 'center'}}>
-      <h2>
-        Receipts
-      </h2>
-      Here we go again
+      <h4>
+        what's annoying you today?
+      </h4>
     </div>
   )
 }

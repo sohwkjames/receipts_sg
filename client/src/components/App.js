@@ -4,10 +4,9 @@ import Header from './Header';
 import Landing from './Landing';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import AddReceiptForm from './receipts/AddReceiptForm';
+import ReceiptNew from './receipts/ReceiptNew';
 
 const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
 
 class App extends Component {
   componentDidMount() {
@@ -21,9 +20,9 @@ class App extends Component {
         <BrowserRouter>
           <Route path="/" component={Landing} exact={true}></Route>
           <Route path="/surveys" component={Dashboard} exact={true}></Route>
-          <Route path="/surveys/new" component={SurveyNew} />
+          <Route path="/receipts/new" component={ReceiptNew} />
         </BrowserRouter>
-        <AddReceiptForm />
+        <ReceiptNew />
       </div>
     )
   }

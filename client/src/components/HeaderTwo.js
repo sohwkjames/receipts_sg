@@ -5,7 +5,6 @@ import Payments from './Payments';
 
 function HeaderTwo(props) {
   const content = props;
-  console.log('HeaderTwo received:', props);
   return(
     <div>
       This is props we receive:;
