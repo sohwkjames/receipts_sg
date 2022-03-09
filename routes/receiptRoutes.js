@@ -13,11 +13,11 @@ module.exports = (app) => {
   });
 
   app.post('/api/receipts/add', (req, res) => {
-    const { title, text } = req.body;
+    const { title, text } = req.body.values;
     let receipt = new Receipt( {
       title,
       text,
-      date: Date.now()
+      datePosted: Date.now()
     });
     receipt.save();
     res.status(201).send()

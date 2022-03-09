@@ -5,6 +5,7 @@ import * as actions from '../actions';
 // todo: make this a functional component instead 
 class Payments extends Component {
   render() {
+
     const name = 'Receipts-sg';
     const description = '$5 for 5 premium complaints';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import ReceiptField from './ReceiptField';
-import { Link } from 'react-router-dom';
 
 function ReceiptForm(props) {
+  const { handleSubmit, onSurveySubmit, values } = props;
 
   const FIELDS = [
     { name: 'title', label: 'Title' },
@@ -19,13 +19,15 @@ function ReceiptForm(props) {
 
   return(
     <div>
-      <form onSubmit={props.handleSubmit(values => console.log('handleSubmit:', values))}>
+      <form onSubmit={handleSubmit(onSurveySubmit)}>
         {renderFields()}
-        <button className="teal btn-flat right white-text" type="submit">
+        <button 
+          className="teal btn-flat right white-text" 
+          type="submit"
+        >
           Submit
           <i class="material-icons right">done</i>
         </button>
-        
       </form>
     </div>
   )
@@ -41,7 +43,8 @@ function validate(values) {
   return errors;
 }
 
+// allows us to access redux-form functions in component props.
 export default reduxForm({
   validate: validate,
-  form: 'surveyForm'
+  form: 'receiptForm'
 })(ReceiptForm);

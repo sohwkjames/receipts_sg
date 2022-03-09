@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReceiptForm from './ReceiptForm';
+import { reduxForm } from 'redux-form';
+import ReceiptFormReview from './ReceiptFormReview';
 
-function ReceiptNew() {
+function ReceiptNew(props) {  
+  const [showFormReview, setShowFormReview] = useState(false);
 
   return(
     <div>
-      <ReceiptForm />
+      {showFormReview && <ReceiptFormReview 
+        onCancel = {() => setShowFormReview(false)}
+      />}
+      <ReceiptForm 
+        onSurveySubmit={() => setShowFormReview(true)}
+      />
+      
     </div>
   )
-
 }
 
-export default ReceiptNew;
+export default reduxForm({ form: 'receiptForm' })(ReceiptNew);
