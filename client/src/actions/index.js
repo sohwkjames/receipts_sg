@@ -19,9 +19,9 @@ export const handleToken = (token) => {
 
 export const submitReceipt = (values) => {  
   return async function (dispatch) {
-    console.log('Inside the async function in submitReceipt');
-    const res = await axios.post('api/receipts/add', values);
-    // dispatch({ type: FETCH_USER, payload: res.data })
+    console.log('Inside the async function of submitReceipt, making axios call now');
+    const res = await axios.post('api/receipts', values);
+    return res;
   }
 }
 

@@ -4,7 +4,8 @@ import Header from './Header';
 import Landing from './Landing';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import ReceiptNew from './receipts/ReceiptNew';
+import ReceiptNew from './receiptForm/ReceiptNew';
+import ReceiptList from './receiptList/ReceiptList';
 
 const Dashboard = () => <h2>Dashboard</h2>
 
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/receipts/new" component={ReceiptNew} />
         </BrowserRouter>
         <ReceiptNew />
+        <ReceiptList />
       </div>
     )
   }

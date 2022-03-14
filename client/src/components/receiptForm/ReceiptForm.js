@@ -1,9 +1,12 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import * as actions from '../../actions/index';
+import { connect } from 'react-redux';
+import { SUBMIT_SURVEY } from '../../actions/types';
 import ReceiptField from './ReceiptField';
 
 function ReceiptForm(props) {
-  const { handleSubmit, onSurveySubmit, values } = props;
+  const { handleSubmit, submitReceipt } = props;
 
   const FIELDS = [
     { name: 'title', label: 'Title' },
@@ -19,14 +22,14 @@ function ReceiptForm(props) {
 
   return(
     <div>
-      <form onSubmit={handleSubmit(onSurveySubmit)}>
+      <form onSubmit={handleSubmit((values) => submitReceipt(values))}>
         {renderFields()}
         <button 
           className="teal btn-flat right white-text" 
           type="submit"
         >
           Submit
-          <i class="material-icons right">done</i>
+          <i className="material-icons right">done</i>
         </button>
       </form>
     </div>
@@ -43,8 +46,10 @@ function validate(values) {
   return errors;
 }
 
+const decoratedReceiptForm = connect(null, actions)(ReceiptForm);
+
 // allows us to access redux-form functions in component props.
 export default reduxForm({
   validate: validate,
   form: 'receiptForm'
-})(ReceiptForm);
+})(decoratedReceiptForm);
