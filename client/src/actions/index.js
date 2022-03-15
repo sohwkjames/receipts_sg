@@ -19,7 +19,6 @@ export const handleToken = (token) => {
 
 export const submitReceipt = (values) => {  
   return async function (dispatch) {
-    console.log('Inside the async function of submitReceipt, making axios call now');
     const res = await axios.post('api/receipts', values);
     return res;
   }
@@ -27,4 +26,12 @@ export const submitReceipt = (values) => {
 
 export const sampleAction = (values) => {
   console.log('sampleAction, values:', values);
+}
+
+export const fetchReceipts = () => {
+  return async function(dispatch) {
+    console.log('Inside async function of fetchReceipts, making axios call');
+    const res = await axios.get('api/receipts');
+    return res.data;
+  }
 }

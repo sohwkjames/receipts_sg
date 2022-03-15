@@ -16,4 +16,4 @@ function mapStateToProps(state) {
   return { auth: state.auth };
 }
 
-export default mapStateToProps)(HeaderTwo);
+export default mapStateToProps()(HeaderTwo);
