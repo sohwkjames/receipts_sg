@@ -17,14 +17,14 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Header />
         <BrowserRouter>
+          <Header />
           <Route path="/" component={Landing} exact={true}></Route>
-          <Route path="/surveys" component={Dashboard} exact={true}></Route>
           <Route path="/receipts/new" component={ReceiptNew} />
+          <ReceiptNew />
+          <ReceiptList />
         </BrowserRouter>
-        <ReceiptNew />
-        <ReceiptList />
+
       </div>
     )
   }

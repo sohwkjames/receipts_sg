@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import * as actions from '../../actions/index';
 import { connect } from 'react-redux';
-import { SUBMIT_SURVEY } from '../../actions/types';
 import ReceiptField from './ReceiptField';
+import { withRouter } from 'react-router-dom'
 
 function ReceiptForm(props) {
-  const { handleSubmit, submitReceipt } = props;
+  const { handleSubmit, submitReceipt, history } = props;
 
   const FIELDS = [
     { name: 'title', label: 'Title' },
@@ -22,7 +22,7 @@ function ReceiptForm(props) {
 
   return(
     <div>
-      <form onSubmit={handleSubmit((values) => submitReceipt(values))}>
+      <form onSubmit={handleSubmit((values) => submitReceipt(values, history))}>
         {renderFields()}
         <button 
           className="teal btn-flat right white-text" 
@@ -46,7 +46,8 @@ function validate(values) {
   return errors;
 }
 
-const decoratedReceiptForm = connect(null, actions)(ReceiptForm);
+// withRouter allows access to history objcet
+const decoratedReceiptForm = connect(null, actions)(withRouter(ReceiptForm));
 
 // allows us to access redux-form functions in component props.
 export default reduxForm({

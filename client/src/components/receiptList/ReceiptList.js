@@ -8,18 +8,17 @@ function ReceiptList(props) {
 
   const { fetchReceipts } = props;
   const [receiptList, setReceiptList] = useState();
+  const [receiptCount, setReceiptCount] = useState(0);
 
   useEffect(async () => {
     const receipts = await fetchReceipts();
-    setReceiptList(receipts);
-    console.log('receipts received from action:', receipts);
+    setReceiptList();
+    console.log('New receipt count:', receiptCount);
   }, []);
 
   return(
     <div>
-      Start of ReceiptList
       {receiptList && <ReceiptListContainer receiptList={receiptList}/>}
-
     </div>
   )
 }
