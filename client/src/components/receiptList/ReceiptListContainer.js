@@ -9,7 +9,6 @@ function ReceiptListContainer(props) {
     return <Receipt text={receipt.text} title={receipt.title}/>
   })
   
-  console.log('content is:', content)
   return (
     <div>
       {content}
