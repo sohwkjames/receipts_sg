@@ -24,7 +24,7 @@ function Header(props) {
     <nav>
       <div className="nav-wrapper">
         <BrowserRouter>
-          <Link to={props.auth ? "/surveys" : "/"} className="left brand-logo">receipts.sg</Link>
+          <Link to={props.auth ? "/" : "/"} className="left brand-logo">receipts.sg</Link>
         </BrowserRouter>
         <ul className="right">
           {renderContent()}

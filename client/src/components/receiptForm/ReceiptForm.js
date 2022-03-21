@@ -1,28 +1,43 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
-import * as actions from '../../actions/index';
-import { connect } from 'react-redux';
-import { SUBMIT_SURVEY } from '../../actions/types';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, withRouter } from 'react-router-dom'
+import { submitNewReceipt } from '../../actions';
 import ReceiptField from './ReceiptField';
 
-function ReceiptForm(props) {
-  const { handleSubmit, submitReceipt } = props;
+const FIELDS = [
+  { name: 'title', label: 'Title' },
+  { name: 'text', label: 'Text (optional)'}
+];
 
-  const FIELDS = [
-    { name: 'title', label: 'Title' },
-    { name: 'text', label: 'Text (optional)'}
-  ]
+
+function ReceiptForm(props) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [title, setTitle] = useState();
+  const [text, setText] = useState();
+
+  const handleTitleChange = e => setTitle(e.target.value);
+  const handleTextChange = e => setText(e.target.value);
+
+  const mapFieldToHandler = { 'title': handleTitleChange, 'text': handleTextChange };
 
   function renderFields() {
     const fieldList = FIELDS.map((field) => {
-      return <Field key={field.name} type="text" name={field.name} label={field.label} component={ReceiptField} />;
+      return <ReceiptField key={field.name} type="text" name={field.name} label={field.label} handleChange={mapFieldToHandler[field.name]}/>;
     });
     return fieldList;
+  };
+
+  function handleSubmit() {
+    const values = {title, text};
+    const saveNewReceiptThunk = submitNewReceipt(values, history);
+    dispatch(saveNewReceiptThunk);
   }
 
   return(
     <div>
-      <form onSubmit={handleSubmit((values) => submitReceipt(values))}>
+      <form onSubmit={handleSubmit}>
         {renderFields()}
         <button 
           className="teal btn-flat right white-text" 
@@ -34,22 +49,6 @@ function ReceiptForm(props) {
       </form>
     </div>
   )
-}
+};
 
-function validate(values) {
-  const errors = {};
-
-  if (!values.title) {
-    errors.title = 'Give us a title!';
-  };
-
-  return errors;
-}
-
-const decoratedReceiptForm = connect(null, actions)(ReceiptForm);
-
-// allows us to access redux-form functions in component props.
-export default reduxForm({
-  validate: validate,
-  form: 'receiptForm'
-})(decoratedReceiptForm);
+export default ReceiptForm;

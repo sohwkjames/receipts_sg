@@ -17,21 +17,30 @@ export const handleToken = (token) => {
   }
 }
 
-export const submitReceipt = (values) => {  
+export function submitNewReceipt(values, history) {  
   return async function (dispatch) {
+
     const res = await axios.post('api/receipts', values);
-    return res;
+    history.push('/');
+    dispatch({ type: 'receipts/receiptAdded', payload: res.payload })
   }
 }
 
-export const sampleAction = (values) => {
-  console.log('sampleAction, values:', values);
-}
+// export const fetchReceipts = () => {
+//   return async function(dispatch) {
+//     const res = await axios.get('api/receipts');
+//     return res.data;
+//   }
+// }
 
-export const fetchReceipts = () => {
+export async function fetchReceipts(dispatch, getState) {
+  const response = await axios.get('/api/receipts');
+  dispatch({ type: 'receipts/receiptsLoaded', payload: response.data} );
+};
+
+export const adminDeleteAllReceipts = () => {
   return async function(dispatch) {
-    console.log('Inside async function of fetchReceipts, making axios call');
-    const res = await axios.get('api/receipts');
-    return res.data;
+    const res = await axios.get('/api/receipts/delete');
+    return res;
   }
 }

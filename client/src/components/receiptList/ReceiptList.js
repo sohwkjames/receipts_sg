@@ -2,30 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux'
 import * as actions from '../../actions'
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import ReceiptListContainer from './ReceiptListContainer';
 
 function ReceiptList(props) {
 
-  const { fetchReceipts } = props;
-  const [receiptList, setReceiptList] = useState();
-
-  useEffect(async () => {
-    const receipts = await fetchReceipts();
-    setReceiptList(receipts);
-    console.log('receipts received from action:', receipts);
-  }, []);
+  const receipts = useSelector((selector) => selector.receipt);
 
   return(
     <div>
-      Start of ReceiptList
-      {receiptList && <ReceiptListContainer receiptList={receiptList}/>}
-
+      {receipts && <ReceiptListContainer receiptList={receipts}/>}
     </div>
   )
 }
 
-function mapStateToProps(state) {
-  return { receipt: state.receipt }
-}
-
-export default connect(mapStateToProps, actions)(ReceiptList);
+export default ReceiptList;

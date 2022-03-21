@@ -20,5 +20,12 @@ module.exports = (app) => {
     receipt.save();
 
     res.status(201).send()
-  })
+  });
+
+  // For testing
+  app.get('/api/receipts/delete', async (req, res) => {
+    Receipt.remove({}, function(err) {
+      return 'Eror removing!';
+    });
+  });
 };
