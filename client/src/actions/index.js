@@ -19,19 +19,11 @@ export const handleToken = (token) => {
 
 export function submitNewReceipt(values, history) {  
   return async function (dispatch) {
-
     const res = await axios.post('api/receipts', values);
     history.push('/');
     dispatch({ type: 'receipts/receiptAdded', payload: res.payload })
   }
 }
-
-// export const fetchReceipts = () => {
-//   return async function(dispatch) {
-//     const res = await axios.get('api/receipts');
-//     return res.data;
-//   }
-// }
 
 export async function fetchReceipts(dispatch, getState) {
   const response = await axios.get('/api/receipts');

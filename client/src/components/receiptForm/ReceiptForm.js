@@ -9,7 +9,6 @@ const FIELDS = [
   { name: 'text', label: 'Text (optional)'}
 ];
 
-
 function ReceiptForm(props) {
   const history = useHistory();
   const dispatch = useDispatch();
