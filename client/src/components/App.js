@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Header from './Header';
 import Landing from './Landing';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import ReceiptList from './receiptList/ReceiptList';
-import ReceiptForm from './receiptForm/ReceiptForm';
+import HeaderTwo from './Header/HeaderTwo';
+import TaskList from './TaskList/TaskList';
 
 const Dashboard = () => <h2>Dashboard</h2>
 
@@ -18,11 +17,9 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <Header />
+          <HeaderTwo />
           <Route path="/" component={Landing} exact={true}></Route>
-          <Route path="/receipts/new" component={ReceiptForm} />
-          <ReceiptForm />
-          <ReceiptList />
+          <TaskList />
         </BrowserRouter>
 
       </div>

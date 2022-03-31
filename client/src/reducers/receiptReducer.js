@@ -1,7 +1,5 @@
 import { FETCH_RECEIPTS, ADD_RECEIPT } from "../actions/types";
 
-const initialState = [];
-
 export default function(state = [], action) {
   switch(action.type) {
     case 'receipts/receiptsLoaded': {
