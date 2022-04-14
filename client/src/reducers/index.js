@@ -6,8 +6,6 @@ import taskReducer from './taskReducer';
 
 export default combineReducers({
   auth: authReducer,
-  form: reduxForm,
   receipt: receiptReducer,
   task: taskReducer
 });
-

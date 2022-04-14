@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import styled from "styled-components";
-
+import './HeaderTwo.css';
 
 function HeaderTwo(props) {
-  const content = props;
   return(
-    <StyledHeader>
-      <span>Tasks</span> List
-    </StyledHeader>
+    <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo left"><i class="material-icons">home</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      </ul>
+    </div>
+  </nav>
   )
 } 
 
 export default HeaderTwo;
 
-const StyledHeader = styled.div`
-  & { 
-    overflow: hidden;
-    text-align: center;
-    margin: 2em 0em;
-    font-size: 1.5em;
-  }
-`

@@ -4,12 +4,10 @@ export default function(state = [], action) {
   switch(action.type) {
     case 'receipts/receiptsLoaded': {
       // action called when receiptList loads up for the first time
-      console.log('receipts/receiptsLoaded action fired, payload:', action.payload)
       return action.payload
     }
 
     case 'receipts/receiptAdded': {
-      console.log('receiptAdded action fired, payload is:', action.payload);
       return state;
     }
 

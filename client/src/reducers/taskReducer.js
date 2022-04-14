@@ -10,7 +10,8 @@ function nextTaskId(tasks) {
 
 export default function(state = initialState, action) {
   switch(action.type) {
-    case 'tasks/taskAdded': {
+    case 'task/taskAdded': {
+      console.log('in taskAdded case, payload:', action.payload)
       return [...state, {
         id: nextTaskId(state),
         text: action.payload.text,

@@ -1,0 +1,8 @@
+::placeholder {
+  font-style: italic;
+}
+
+.background-color-container {
+  background-color: rgb(200,90,90);
+  padding-bottom: 12px;
+}

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Landing from './Landing';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import HeaderTwo from './Header/HeaderTwo';
 import TaskList from './TaskList/TaskList';
-
-const Dashboard = () => <h2>Dashboard</h2>
 
 class App extends Component {
   componentDidMount() {
@@ -15,17 +13,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <BrowserRouter>
-          <HeaderTwo />
-          <Route path="/" component={Landing} exact={true}></Route>
-          <TaskList />
-        </BrowserRouter>
-
+      <div className="background-color-container">
+        <HeaderTwo />
+        <div className="container">
+          <BrowserRouter>
+            {/* <AddTaskModal /> */}
+            <TaskList />
+          </BrowserRouter>
+        </div>
       </div>
     )
   }
 };
-
 
 export default connect(null, actions)(App);
