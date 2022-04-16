@@ -1,51 +1,38 @@
 import React, { useState } from 'react';
-import {Card, RedCard} from '../../UI/Card';
-import AddTaskField from './AddTaskField';
+import { Card } from '../../UI/Card';
+import { Button } from '../../UI/Button';
 import { useDispatch } from 'react-redux';
-import ModalFooter from './ModalFooter';
+import { useForm} from 'react-hook-form';
+import { ADD_TASK_HINT } from '../../../constants/taskConstants';
+
+import styled from 'styled-components';
 
 function AddTaskModal(props) {
-  const dispatch = useDispatch()
-  const [text, setText] = useState();
-  const [dueDate, setDueDate] = useState();
-  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const { register, handleSubmit, watch, formState: { errors }} = useForm();
 
-  function checkValidInput(text) {
-    // if text is empty, set errors to { noEmpty: "must have some input"}
-    if (!text) {
-      setErrors({ noText: "There must be some text" });
-      console.log('errors set');
-    };
-  }
-
-  function handleTextChange(e){ 
-    if(e.target.value)
-    setText(e.target.value) 
-  }
-
-  function handleDueDateChange(e){ setDueDate(e.target.value) }
-
-  function handleAddTask() {
-    // update errors state
-    checkValidInput(text);
-    // dispatch action if no errors
-    if (!Object.keys(errors)) {
-      // dispatch a action of type task/addTask, payload is title
-      const payload = { text: text, dueDate: dueDate }
-      dispatch( {type: 'task/taskAdded', payload });
-    }
-  }
+  function onSubmit(data) {
+    const payload = { text: data.text, dueDate: null};
+    dispatch({ type: 'task/taskAdded', payload });
+  };
 
   return(
     <Card>
-      <AddTaskField handleTextChange={handleTextChange}/>
-      <ModalFooter>
-          <button className="waves-effect waves-light btn-small" onClick={handleAddTask}>Save</button>      
-      </ModalFooter>
+      <form onSubmit={handleSubmit(onSubmit)} >
+        <StyledInput placeholder={ADD_TASK_HINT} {...register("text", { required: true})} />
+        <Button>Submit!</Button>
+      </form>
     </Card>
   )
 }
 
 export default AddTaskModal;
 
+const StyledInput = styled.input`
+  font-weight: bold;
+`
 
+const StyledP = styled.span`
+  color: red;  
+  margin: 16px;
+`
