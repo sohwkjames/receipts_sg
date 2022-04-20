@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import AddTaskModal from './TaskModal/AddTaskModal';
-import AddTaskToggle from './TaskModal/AddTaskToggle';
+import AddTaskForm from './TaskForm/AddTaskForm';
+import AddTaskToggle from './TaskForm/AddTaskToggle';
 import Task from '../Task/Task';
 
 function TaskList(props) {
@@ -9,19 +9,19 @@ function TaskList(props) {
   const tasks = useSelector((selector) => selector.task);  
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  function handleToggle() { setIsModalVisible(!isModalVisible)};
+  function handleToggleVisibility() { setIsModalVisible(!isModalVisible)};
 
-  const addTaskToggle = !isModalVisible && <AddTaskToggle onClick={handleToggle}/>
-  const modal = isModalVisible && <AddTaskModal onClick={handleToggle}/>
+  const addTaskForm = <AddTaskForm onClick={handleToggleVisibility}/>
+  
+  console.log('taskList: tasks are:', tasks);
 
   const content = tasks.map((task) => {
-    return <Task text={task.text} isDone={false}/>
+    return <Task key={task.id} id={task.id} text={task.text} isDone={false}/>
   })
   
   return (
     <div>
-      {addTaskToggle}
-      {modal}
+      {addTaskForm}
       {content}
       </div>
   )

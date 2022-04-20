@@ -5,4 +5,5 @@
 .background-color-container {
   background-color: rgb(200,90,90);
   padding-bottom: 12px;
+  height: 100%;
 }
